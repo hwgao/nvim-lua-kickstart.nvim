@@ -317,6 +317,10 @@ vim.keymap.set('n', '<space>o', ':only<CR>', { desc = 'Make the current window t
 
 vim.keymap.set('n', ',', ':Grepper -tool rg -query <C-R>=expand("<cword>")<CR><CR>', { desc = 'Search word under cursor' })
 vim.keymap.set('n', '<space>t', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle file tree' })
+vim.keymap.set('n', '<F8>', ':TagbarToggle<CR>', { desc = 'Toggle tagbar' })
+
+local barbar_opts = { noremap = true, silent = true }
+vim.keymap.set('n', '<space>pp', '<Cmd>BufferPick<CR>', barbar_opts)
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
