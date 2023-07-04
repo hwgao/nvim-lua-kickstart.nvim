@@ -3,14 +3,30 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  'kdheepak/lazygit.nvim',
+  {
+    'kdheepak/lazygit.nvim',
+    config =function ()
+      vim.keymap.set('n', '<space>gl', ':LazyGit<CR>', { desc = 'Show LazyGit' })
+    end
+  },
   'dimasg/vim-mark',
   'hwgao/vim-rooter',
   'MattesGroeger/vim-bookmarks',
-  'mhinz/vim-grepper',
-  'nvim-tree/nvim-tree.lua',
+  {
+    'mhinz/vim-grepper',
+    config =function ()
+      vim.keymap.set('n', ',', ':Grepper -tool rg -query <C-R>=expand("<cword>")<CR><CR>', { desc = 'Search word under cursor' })
+      vim.keymap.set('n', '<space>,', ':Grepper -tool rg -buffers -noprompt -cword<CR>', { desc = 'Search word in all opened buffers' })
+  end
+  },
   'cdelledonne/vim-cmake',
-  'preservim/tagbar',
+  {
+    'preservim/tagbar',
+    config =function ()
+      vim.keymap.set('n', '<F8>', ':TagbarToggle<CR>', { desc = 'Toggle tagbar' })
+    end
+  },
+  'equalsraf/neovim-gui-shim',
   {
     'alexghergh/nvim-tmux-navigation',
      config = function()
