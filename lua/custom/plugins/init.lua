@@ -55,5 +55,9 @@ return {
       -- …etc.
     },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
+    config =function ()
+      local barbar_opts = { noremap = true, silent = true }
+      vim.keymap.set('n', '<leader><leader>', '<Cmd>BufferPick<CR>', barbar_opts)
+    end
   },
 }

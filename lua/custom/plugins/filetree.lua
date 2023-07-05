@@ -10,6 +10,7 @@ return {
     "MunifTanjim/nui.nvim",
   },
   config = function ()
+    require("neo-tree").setup {}
     vim.keymap.set('n', '|', ':Neotree toggle reveal_force_cwd<CR>', { desc = 'Reveal neo-tree' })
   end,
 }
