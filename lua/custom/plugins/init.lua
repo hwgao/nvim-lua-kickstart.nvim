@@ -16,7 +16,8 @@ return {
     'mhinz/vim-grepper',
     config =function ()
       vim.keymap.set('n', ',', ':Grepper -tool rg -query <C-R>=expand("<cword>")<CR><CR>', { desc = 'Search word under cursor' })
-      vim.keymap.set('n', '<space>,', ':Grepper -tool rg -buffers -noprompt -cword<CR>', { desc = 'Search word in all opened buffers' })
+      vim.keymap.set('n', '<space>sb', ':Grepper -buffer -noprompt -cword<CR>', { desc = '[S]earch current word in current [B]uffer' })
+      vim.keymap.set('n', '<space>so', ':Grepper -buffers -noprompt -cword<CR>', { desc = '[S]earch word in all [o]pened buffers' })
   end
   },
   'cdelledonne/vim-cmake',

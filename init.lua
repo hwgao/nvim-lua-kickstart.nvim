@@ -124,7 +124,7 @@ require('lazy').setup({
       on_attach = function(bufnr)
         vim.keymap.set('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
         vim.keymap.set('n', ']c', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
-        vim.keymap.set('n', '<space>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
+        vim.keymap.set('n', '<space>gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[G]it preview [H]unk' })
       end,
     },
   },
@@ -421,8 +421,8 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('<space>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<space>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<space>r', vim.lsp.buf.rename, '[R]ename')
+  nmap('<space>c', vim.lsp.buf.code_action, '[C]ode Action')
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
