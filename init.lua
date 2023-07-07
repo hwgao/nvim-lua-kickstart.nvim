@@ -84,7 +84,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -108,7 +108,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',          opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -122,20 +122,23 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '[c', require('gitsigns').prev_hunk, { buffer = bufnr, desc = 'Go to Previous Hunk' })
-        vim.keymap.set('n', ']c', require('gitsigns').next_hunk, { buffer = bufnr, desc = 'Go to Next Hunk' })
-        vim.keymap.set('n', '<space>gh', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[G]it preview [H]unk' })
+        vim.keymap.set('n', '[c', require('gitsigns').prev_hunk,
+          { buffer = bufnr, desc = 'Go to Previous Hunk' })
+        vim.keymap.set('n', ']c', require('gitsigns').next_hunk,
+          { buffer = bufnr, desc = 'Go to Next Hunk' })
+        vim.keymap.set('n', '<space>gh', require('gitsigns').preview_hunk,
+          { buffer = bufnr, desc = '[G]it preview [H]unk' })
       end,
     },
   },
 
-	{
-		'morhetz/gruvbox',
-		priority = 100,
-		config = function()
-			vim.cmd.colorscheme 'gruvbox'
-		end,
-	},
+  {
+    'morhetz/gruvbox',
+    priority = 100,
+    config = function()
+      vim.cmd.colorscheme 'gruvbox'
+    end,
+  },
 
   -- {
   --   -- Theme inspired by Atom
@@ -158,13 +161,13 @@ require('lazy').setup({
         section_separators = '',
       },
       sections = {
-          lualine_c = {
-            {
-              'filename',
-              file_status = true, -- displays file status (readonly status, modified status)
-              path = 3 -- 0 = just filename, 1 = relative path, 2 = absolute path
-            }
+        lualine_c = {
+          {
+            'filename',
+            file_status = true, -- displays file status (readonly status, modified status)
+            path = 3      -- 0 = just filename, 1 = relative path, 2 = absolute path
           }
+        }
       }
     },
   },
@@ -184,7 +187,7 @@ require('lazy').setup({
   {
     'numToStr/Comment.nvim',
     opts = {},
-    config =function ()
+    config = function()
       require("Comment").setup()
     end
   },
@@ -195,7 +198,8 @@ require('lazy').setup({
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   {
     'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+    build =
+    'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
     cond = function()
       return vim.fn.executable 'cmake' == 1
     end,
@@ -320,7 +324,7 @@ vim.keymap.set('n', '<space>/', function()
 end, { desc = '[/] Fuzzily search in current buffer' })
 
 vim.keymap.set('n', '<space>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<space>f',  require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
+vim.keymap.set('n', '<space>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
 vim.keymap.set('n', '<space>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<space>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<space>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
