@@ -5,7 +5,7 @@
 return {
   {
     'kdheepak/lazygit.nvim',
-    config =function ()
+    config = function()
       vim.keymap.set('n', '<space>gl', ':LazyGit<CR>', { desc = 'Show LazyGit' })
     end
   },
@@ -14,23 +14,26 @@ return {
   'MattesGroeger/vim-bookmarks',
   {
     'mhinz/vim-grepper',
-    config =function ()
-      vim.keymap.set('n', ',', ':Grepper -tool rg -query <C-R>=expand("<cword>")<CR><CR>', { desc = 'Search word under cursor' })
-      vim.keymap.set('n', '<space>sb', ':Grepper -buffer -noprompt -cword<CR>', { desc = '[S]earch current word in current [B]uffer' })
-      vim.keymap.set('n', '<space>so', ':Grepper -buffers -noprompt -cword<CR>', { desc = '[S]earch word in all [o]pened buffers' })
-  end
+    config = function()
+      vim.keymap.set('n', ',', ':Grepper -tool rg -query <C-R>=expand("<cword>")<CR><CR>',
+        { desc = 'Search word under cursor' })
+      vim.keymap.set('n', '<space>sb', ':Grepper -buffer -noprompt -cword<CR>',
+        { desc = '[S]earch current word in current [B]uffer' })
+      vim.keymap.set('n', '<space>so', ':Grepper -buffers -noprompt -cword<CR>',
+        { desc = '[S]earch word in all [o]pened buffers' })
+    end
   },
   'cdelledonne/vim-cmake',
   {
     'preservim/tagbar',
-    config =function ()
+    config = function()
       vim.keymap.set('n', '<F8>', ':TagbarToggle<CR>', { desc = 'Toggle tagbar' })
     end
   },
   'equalsraf/neovim-gui-shim',
   {
     'alexghergh/nvim-tmux-navigation',
-     config = function()
+    config = function()
       local nvim_tmux_nav = require('nvim-tmux-navigation')
       nvim_tmux_nav.setup {
         disable_when_zoomed = true -- defaults to false
@@ -40,15 +43,17 @@ return {
       vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
       vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
       vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
-     end
+    end
   },
   { 'echasnovski/mini.nvim', version = '*' },
-    {'romgrk/barbar.nvim',
+  {
+    'romgrk/barbar.nvim',
     dependencies = {
-      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
       'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
     },
-    init = function() vim.g.barbar_auto_setup = false end,
+    -- if disable auto setup, need to call setup in config
+    -- init = function() vim.g.barbar_auto_setup = false end,
     opts = {
       -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
       animation = true,
@@ -56,7 +61,7 @@ return {
       -- …etc.
     },
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
-    config =function ()
+    config = function()
       local barbar_opts = { noremap = true, silent = true }
       vim.keymap.set('n', '<leader><leader>', '<Cmd>BufferPick<CR>', barbar_opts)
     end

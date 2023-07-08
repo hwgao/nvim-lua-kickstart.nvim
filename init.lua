@@ -84,7 +84,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -235,6 +235,9 @@ require('lazy').setup({
 -- Set highlight on search
 vim.o.hlsearch = true
 
+-- Highlight currentline
+vim.o.cursorline = true
+
 -- Make line numbers default
 vim.wo.number = true
 
@@ -291,6 +294,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- hide currentline background when in insert mode
+vim.api.nvim_create_autocmd(
+  { 'InsertEnter', 'InsertLeave' },
+  { pattern = "*", command = "set cul!" }
+)
+
+-- create dir before write the buffer
+vim.api.nvim_create_autocmd(
+  { 'BufWritePre' },
+  { pattern = "*", command = 'call mkdir(expand("<afile>:p:h"), "p")' }
+)
+
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -333,8 +348,9 @@ vim.keymap.set('n', '<space>sd', require('telescope.builtin').diagnostics, { des
 vim.keymap.set('n', '<space><space>', ':nohls<CR>', { desc = 'Clear highlight search' })
 vim.keymap.set('n', '<space>o', ':only<CR>', { desc = 'Make the current window the [O]nly one on the screen' })
 
-local barbar_opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader><leader>', '<Cmd>BufferPick<CR>', barbar_opts)
+-- easy keymap in insert mode
+vim.keymap.set('i', '<C-;>', '<End>;')
+vim.keymap.set('i', '<C-l>', '<Right>')
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
